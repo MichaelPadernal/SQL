@@ -1,0 +1,45 @@
+--Create a fitness store database
+
+CREATE TABLE fitness_store (id integer primary key, item text, quantity integer, price integer, popularity integer);
+
+INSERT INTO fitness_Store VALUES (1, "male athleisure shirt", 50, 29.99, 85);
+
+INSERT INTO fitness_Store VALUES (2, "male athleisure tank", 40, 24.49, 80);
+
+INSERT INTO fitness_Store VALUES (3, "male athleisure short", 50, 20.99, 85);
+
+INSERT INTO fitness_Store VALUES (4, "female athleisure shirt", 50, 24.99, 80);
+
+INSERT INTO fitness_Store VALUES (5, "female athleisure tank", 40, 20.49, 85);
+
+INSERT INTO fitness_Store VALUES (6, "female athleisure short", 50, 18.99, 85);
+
+INSERT INTO fitness_Store VALUES (7, "male athleisure cap", 30, 16.99, 78);
+
+INSERT INTO fitness_Store VALUES (8, "female athleisure cap", 30, 16.99, 78);
+
+INSERT INTO fitness_Store VALUES (9, "male athletic shoes", 50, 69.99, 90);
+
+INSERT INTO fitness_Store VALUES (10, "female athletic shoes", 50, 59.99, 90);
+
+INSERT INTO fitness_Store VALUES (11, "creatine", 30, 35.99, 80);
+
+INSERT INTO fitness_Store VALUES (12, "protein powder", 40, 69.99, 90);
+
+INSERT INTO fitness_Store VALUES (13, "pre-workout powder",30, 39.99, 85);
+
+INSERT INTO fitness_Store VALUES (14, "protein bars", 40, 18.99, 95);
+
+INSERT INTO fitness_Store VALUES (15, "candy", 50, 4.99, 100);
+
+--display the database ordered by price
+SELECT * FROM fitness_store
+ORDER BY price desc;
+
+--what is the average price of items
+SELECT AVG (price) FROM fitness_store;
+
+--5 least popular items under 85
+SELECT * FROM fitness_store
+WHERE popularity < 85
+limit 5;
