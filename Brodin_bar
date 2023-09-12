@@ -1,0 +1,53 @@
+create table Brodin_bar (id integer primary key autoincrement, name text, color text, size text, price integer, quantity integer);
+
+insert into Brodin_bar (name, color, size, price, quantity)
+values ("men tee", "black", "small", 45, 50);
+
+insert into Brodin_bar (name, color, size, price, quantity)
+values ("men tee", "black", "medium", 45, 50);
+
+insert into Brodin_bar (name, color, size, price, quantity)
+values ("men tee", "black", "large", 45, 50);
+
+insert into Brodin_bar (name, color, size, price, quantity)
+values ("women tee", "black", "small", 45, 50);
+
+insert into Brodin_bar (name, color, size, price, quantity)
+values ("women tee", "black", "medium", 45, 50);
+
+insert into Brodin_bar (name, color, size, price, quantity)
+values ("women tee", "black", "large", 45, 50);
+
+insert into Brodin_bar (name, color, size, price, quantity)
+values ("women short", "black", "small", 45, 50);
+
+insert into Brodin_bar (name, color, size, price, quantity)
+values ("women short", "black", "medium", 45, 50);
+
+insert into Brodin_bar (name, color, size, price, quantity)
+values ("women short", "black", "large", 45, 50);
+
+insert into Brodin_bar (name, color, size, price, quantity)
+values ("men top", "black", "small", 45, 50);
+
+insert into Brodin_bar (name, color, size, price, quantity)
+values ("men top", "black", "medium", 45, 50);
+
+insert into Brodin_bar (name, color, size, price, quantity)
+values ("men top", "black", "large", 45, 50);
+
+insert into Brodin_bar (name, color, size, price, quantity)
+values ("lanyard", "black/white", "one size", 10, 100);
+
+insert into Brodin_bar (name, color, size, price, quantity)
+values ("men cap", "black/black", "adjustable", 25, 100);
+
+insert into Brodin_bar (name, color, size, price, quantity)
+values ("women cap", "black/black", "adjustable", 25, 100);
+
+-- database ascending by price --
+select * from Brodin_bar
+order by price;
+
+-- average price of Brodin_bar items --
+select avg (price) from Brodin_bar;
