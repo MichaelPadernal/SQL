@@ -1,3 +1,5 @@
+# Set up a fictional health & fitness store with an assortment of projects to sell
+
 create table Brodin_bar (id integer primary key autoincrement, name text, color text, size text, price integer, quantity integer);
 
 insert into Brodin_bar (name, color, size, price, quantity)
