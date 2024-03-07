@@ -1,0 +1,69 @@
+-- Determine the number of Customers by Country not from USA descending
+SELECT Country, COUNT(Country) AS Customers
+FROM chinook.customers
+WHERE Country <> 'USA'
+GROUP BY Country
+ORDER BY Customers desc
+;
+
+-- Determine the list of billable Countries from Invoices
+SELECT DISTINCT BillingCountry
+FROM chinook.Invoices
+ORDER BY BillingCountry asc
+;
+
+-- Determine the list of customers based from USA
+SELECT cust.FirstName, cust.LastName, inv.InvoiceId, inv.BillingCountry, inv.InvoiceDate
+FROM chinook.invoices as inv 
+LEFT JOIN chinook.customers as cust 
+on inv.CustomerId = cust.CustomerId 
+WHERE inv.BillingCountry = "USA"
+;
+
+-- Determine Employees who are Sales Support Agents ordering by LastName descending
+SELECT FirstName, LastName, Email
+FROM chinook.employees
+WHERE Title = 'Sales Support Agent'
+ORDER BY LastName
+;
+
+-- Determine all customers from India
+SELECT * 
+FROM chinook.customers 
+WHERE Country = "India"
+;
+
+-- Determine the total customer sales by country in United Kingdom
+SELECT cust.Country, SUM(inv.Total) AS TotalSales
+FROM chinook.customers cust
+INNER JOIN chinook.invoices inv
+ON cust.CustomerID = inv.CustomerID
+WHERE cust.Country = 'United Kingdom'
+GROUP BY cust.Country
+;
+
+-- Determine the total amount of invoices for 2010
+SELECT COUNT(*) AS TotalInvoices
+FROM chinook.invoices
+WHERE InvoiceDate like '2010%'
+;
+
+-- Determine the names of albums for artist like Santana
+SELECT distinct art.name, alb.title
+FROM chinook.artists art
+INNER JOIN chinook.albums alb
+ON art.ArtistId = alb.ArtistId
+WHERE art.name like '%Santana%'
+;
+
+-- Determine the total sales for each Sales Support Agent by first name
+SELECT emp.FirstName, emp.LastName,
+ROUND(SUM(Inv.Total), 2) AS 'TotalSales'
+FROM chinook.employees emp
+INNER JOIN chinook.invoices inv
+ON cust.CustomerId = Inv.CustomerId
+INNER JOIN chinook.Customers cust 
+ON cust.SupportRepId = emp.EmployeeId
+WHERE emp.Title = 'Sales Support Agent' 
+GROUP BY emp.FirstName
+;
