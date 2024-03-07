@@ -1,3 +1,5 @@
+# For this final SQL project, an assortment of queries were performed by topic
+
 -- Determine the number of Customers by Country not from USA descending
 SELECT Country, COUNT(Country) AS Customers
 FROM chinook.customers
