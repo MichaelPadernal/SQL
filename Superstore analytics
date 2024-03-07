@@ -26,21 +26,24 @@ VALUES
     (15, 'Cozy Throw Blanket', 'Furnishings', 24.99, 100, 4.2);
 
 -- list items by descending price --
-select * from superstore
-order by price asc;
+SELECT * from superstore
+ORDER BY price asc
+;
 
 -- list items by category and total sum --
-select category, avg (price) as avg_price from superstore
-group by category;
+SELECT category, avg (price) as avg_price from superstore
+GROUP BY category
+;
 
 -- list only items under category 'Kitchen Supplies' and greater or equal to 50.00 price --
-select item_name from superstore
-where
-category = 'Kitchen Supplies'
-and
-price >= 50.00;
+SELECT item_name from superstore
+WHERE category = 'Kitchen Supplies'
+AND
+price >= 50.00
+;
 
 - list all items and total stock price for each --
-Select item_name, category, round (price * stock_quantity)
-as total_stock_price from superstore
-group by item_name;
+SLEECT item_name, category, round (price * stock_quantity)
+AS total_stock_price from superstore
+GROUP BY item_name
+;
