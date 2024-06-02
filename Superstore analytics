@@ -1,3 +1,5 @@
+-- This project utilizes the following superstore data:
+
 CREATE TABLE superstore (
     item_id INTEGER PRIMARY KEY,
     item_name TEXT,
@@ -25,25 +27,25 @@ VALUES
     (14, 'Cutlery Set', 'Kitchen Supplies', 34.50, 40, 4.4),
     (15, 'Cozy Throw Blanket', 'Furnishings', 24.99, 100, 4.2);
 
--- list items by descending price --
-SELECT * from superstore
-ORDER BY price asc
-;
+-- For this project, I used SQL to query the superstore database to get information about items, prices, ratings and total profits by category.
 
--- list items by category and total sum --
-SELECT category, avg (price) as avg_price from superstore
-GROUP BY category
-;
+-- 1. Write a SQL query that order items by price.
+SELECT item_name, price
+FROM superstore
+ORDER BY price desc;
 
--- list only items under category 'Kitchen Supplies' and greater or equal to 50.00 price --
-SELECT item_name from superstore
-WHERE category = 'Kitchen Supplies'
-AND
-price >= 50.00
-;
+-- 2. Write an SQL query that will show the max price per category.
+SELECT MAX(price), category
+FROM superstore
+GROUP BY category;
 
-- list all items and total stock price for each --
-SLEECT item_name, category, round (price * stock_quantity)
-AS total_stock_price from superstore
-GROUP BY item_name
-;
+-- 3. Write a SQL query that will show the max average rating per item_name.
+SELECT MAX(average_rating), item_name
+FROM superstore
+WHERE category="Kitchen Supplies"
+GROUP BY item_name;
+
+-- 4. Write a SQL entry that will determine the total profit per category
+SELECT category, SUM(price * stock_quantity) AS total_profit
+FROM superstore
+GROUP BY category;
