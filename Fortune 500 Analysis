@@ -69,11 +69,11 @@ END AS "PTO"
 FROM fortune_companies
 ORDER BY paid_time_off_days desc;
 
--- 2. Create a HAVING query for the number of industries with a total revenue greater than 2000.
+-- 2. Create a HAVING query for the number of industries with a total revenue greater than $200 billion.
 SELECT industry, SUM(revenue) AS total_revenue
 FROM fortune_companies
 GROUP BY industry
-HAVING total_revenue>=2000;
+HAVING total_revenue>=200;
 
 -- 3. Create a AND query for the number of companies that have employees>10000, healthcare_benefits=1 and avg_employee_tenure>=4.
 SELECT company_name
