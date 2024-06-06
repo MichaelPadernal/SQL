@@ -1,4 +1,4 @@
-#This analysis utilized the following Fortune 500 dataset:
+-- Analysis utilized the following Fortune 500 dataset:
 
 CREATE TABLE fortune_companies (
     company_id INTEGER PRIMARY KEY,
@@ -58,28 +58,34 @@ VALUES
     ('Company JJ', 'Manufacturing', 370.0, 3100, 1, 20, 12, 7.6),
     ('Company KK', 'Healthcare', 150.2, 3400, 0, 16, 8, 5.3);
 
--- Group companies and their industries by how much maternity leave available; high, medium and low
-SELECT company_name, industry, maternity_leave_weeks,
-CASE WHEN maternity_leave_weeks > 10 THEN 'High'
-WHEN maternity_leave_weeks > 5 THEN 'Medium'
-ELSE 'Low' END AS maternity
-FROM fortune_companies;
 
--- Determine which industries have an average revenue of 200 billion 
-SELECT industry, ROUND(AVG (revenue), 1) as average_revenue_billions
+-- 1. Create a CASE query for paid_time_off_days by excellent>20, very good>15, good>10, and okay<10.
+SELECT company_name, paid_time_off_days
+, CASE WHEN paid_time_off_days>=20 THEN "excellent"
+WHEN paid_time_off_days>=15 THEN "very good"
+WHEN paid_time_off_days>=10 THEN "good"
+ELSE "okay"
+END AS "PTO"
+FROM fortune_companies
+ORDER BY paid_time_off_days desc;
+
+-- 2. Create a HAVING query for the number of industries with a total revenue greater than 2000.
+SELECT industry, SUM(revenue) AS total_revenue
 FROM fortune_companies
 GROUP BY industry
-HAVING average_revenue_billions > 200;
+HAVING total_revenue>=2000;
 
--- Determine which companies and their industries have healthcare benefits, greater than 20 days PTO and 3 years average employee tenure 
-SELECT company_name, industry
+-- 3. Create a AND query for the number of companies that have employees>10000, healthcare_benefits=1 and avg_employee_tenure>=4.
+SELECT company_name
+, employees
+, healthcare_benefits
+, avg_employee_tenure
 FROM fortune_companies
-WHERE healthcare_benefits = 1
-AND paid_time_off_days > 20
-AND avg_employee_tenure > 3
-ORDER BY industry;
+WHERE employees>=10000
+AND healthcare_benefits=1
+AND avg_employee_tenure>=4;
 
--- Determine which company has the highest revenue in the Technology industry
-SELECT company_name, max(revenue)
+-- 4. Create a AGGREGATE query to determine the average tenure by industry.
+SELECT industry, ROUND(AVG(avg_employee_tenure), 2) AS average_tenure
 FROM fortune_companies
-WHERE industry = 'Technology';
+GROUP BY industry;
